@@ -18,6 +18,18 @@ body {
     background-color: #000000;
 }
 
+.bg-aqua {
+    background: #a5def1;
+}
+
+.bg-gray {
+    background: #e2e2e2;
+}
+
+.bg-pop {
+    background: #27817e;
+}
+
 .container {
     padding: 1% 8%; /* Adjust padding as needed */
     margin: 0 auto;
@@ -43,17 +55,55 @@ body {
     font-weight: 700;
 }
 
+.transition {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.bg-hover:hover {
+    background: #2c2c2c;
+}
+
+.iekbcc0 .ju367vf0 .ju367v16 .ju367v19 .ju367v1h .ju367v2v {
+    color: #a1a1a1;
+}
+
 .custom-link {
     text-decoration: none;
     color: inherit;
 }
+
 .no-border {
     border: none;
     outline: none; /* Để ẩn viền khi ô input được focus */
     box-shadow: none; /* Để tránh các box-shadow có thể có */
 }
+
+.button-allPop {
+    border-bottom: 5px solid #ccc;
+    padding: 20px 100px;
+
+}
+
+.button-buyBox {
+    padding: 10px 150px;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
 .flex {
     display: flex;
+}
+
+.flex-bt-allPop {
+    display: flex;
+}
+
+.flex-buyBox {
+    display: flex;
+}
+
+.w-video-buyBox {
+    width: 700px;
 }
 
 .align-center {
@@ -66,6 +116,15 @@ body {
 
 .c-pointer {
     cursor: pointer;
+}
+
+.margin-auto {
+    margin: 0 auto;
+}
+
+.vertical-hr {
+    border: 1px solid #efefef;
+    margin: 0 8%;
 }
 
 .icon-wrapper {
@@ -113,11 +172,27 @@ body {
     .show-1024 {
         display: block;
     }
+
+    .flex-buyBox {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 767px) {
     .d-none-767 {
         display: none;
+    }
+
+    .flex-bt-allPop {
+        display: block;
+    }
+
+    .margin-767 {
+        margin-bottom: 20px;
+    }
+
+    .w-video-buyBox {
+        width: 500px;
     }
 }
 

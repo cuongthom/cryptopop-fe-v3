@@ -1,18 +1,23 @@
 import logo from "/image/logo.png";
 import {FaTwitter} from "react-icons/fa";
-import {RxAvatar} from "react-icons/rx";
 import {Link} from "react-router-dom";
 import appRoutes from "../routes"; // RxAvatar changed to RiUserLine assuming this is the correct React icon for your use case
-
+import {ConnectButton} from '@rainbow-me/rainbowkit';
+import {TiThMenu} from "react-icons/ti";
+import {useState} from "react";
+import OpenMenuHeader from "./drawer/OpenMenuHeader.tsx";
 
 function Header() {
+    const [open, setOpen] = useState(false);
     return (
         <div className="bg-black">
             <div className="container">
                 <div className="flex align-center between">
                     <div className="flex align-center">
                         <div className="c-pointer">
-                            <img src={logo} alt="logo"/>
+                            <Link to={"/"}>
+                                <img src={logo} alt="logo"/>
+                            </Link>
                         </div>
                         <div className="text-white flex d-none-1024" style={{padding: '0 30px'}}>
                             <Link to={appRoutes.allPops.path} className="custom-link">
@@ -28,19 +33,23 @@ function Header() {
                         </div>
                     </div>
                     <div className="text-white flex align-center" style={{justifyContent: 'center'}}>
-                        <div className="c-pointer">
-                            <h3>Connect Wallet</h3>
-                        </div>
                         <div className="icon-wrapper c-pointer" style={{paddingTop: '5px'}}>
                             <FaTwitter className="social-icon"/>
                         </div>
                         <div className="c-pointer">
-                            <RxAvatar className="avatar-icon"/>
+                            <ConnectButton label="Connect Wallet" accountStatus="address"/>
+                        </div>
+                        <div onClick={() => setOpen(true)}
+                             className="c-pointer show-1024"
+                             style={{paddingLeft: '10px'}}>
+                            <TiThMenu className="avatar-icon"/>
                         </div>
                     </div>
                 </div>
             </div>
+            <OpenMenuHeader open={open} setOpen={setOpen}/>
         </div>
+
     );
 }
 

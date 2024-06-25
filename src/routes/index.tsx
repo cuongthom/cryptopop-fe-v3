@@ -11,7 +11,7 @@ const appRoutes = {
     },
     allPops: {
         path: '/all-pops',
-        component: <AllPopsPage/>
+        component: <AllPopsPage/>,
     },
     buyBox: {
         path: '/box',

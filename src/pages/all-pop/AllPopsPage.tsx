@@ -1,14 +1,19 @@
 import {IoIosSearch} from "react-icons/io";
 import {FaAngleDown} from "react-icons/fa";
+import {Link, useSearchParams} from "react-router-dom";
+import {Row} from "antd";
+
+import GridPops from "./component/GridPops.tsx";
 
 function AllPopsPage() {
+    const [searchParams] = useSearchParams("auction");
     return (
         <div>
-            <div className="container flex between">
-                <div className="flex">
-                    <p>Cryptopops </p>
-                    <p style={{padding: '0 20px'}}>|</p>
-                    <p>All Pops</p>
+            <div className="container flex-bt-allPop between align-center" style={{margin: '20px 0'}}>
+                <div className="flex margin-767">
+                    <b>Cryptopops </b>
+                    <b style={{padding: '0 20px'}}>|</b>
+                    <b>All Pops</b>
                 </div>
                 <div className="align-center flex" style={{border: '1px solid #ccc'}}>
                     <IoIosSearch style={{fontSize: '30px', margin: '5px'}}/>
@@ -37,14 +42,31 @@ function AllPopsPage() {
                     </div>
                 </div>
             </div>
-            <div className="flex container" style={{justifyContent: 'center'}}>
-                <div>
-                   On Auctions
-                </div>
-                <div>
-                    On Marketplace
-                </div>
+            <div className="flex-bt-allPop container" style={{justifyContent: 'center'}}>
+                <Link to={"/all-pops?type=auction"} className="custom-link">
+                    <div
+                        className={searchParams.get("type") === "auction" || searchParams.get("type") === null ? "button-allPop c-pointer bg-aqua" : "bg-gray button-allPop c-pointer"}
+                        style={{margin: '10px 0', textAlign: 'center'}}>
+                        On Auctions
+                    </div>
+                </Link>
+                <Link to={"/all-pops?type=market"} className="custom-link">
+                    <div
+                        className={searchParams.get("type") === "market" ? "bg-aqua button-allPop c-pointer" : "button-allPop c-pointer bg-gray"}
+                        style={{margin: '10px 0', textAlign: 'center'}}>
+                        On Marketplace
+                    </div>
+                </Link>
             </div>
+            <hr className="vertical-hr"/>
+            <Row className="container" gutter={[{xs: 8, sm: 16, md: 24, lg: 32}, {xs: 8, sm: 16, md: 24, lg: 32}]}>
+                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
+                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
+                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
+                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
+                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
+                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
+            </Row>
         </div>
     )
 }
