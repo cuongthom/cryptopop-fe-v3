@@ -2,7 +2,6 @@ import logo from "/image/logo.png";
 import {FaTwitter} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import appRoutes from "../routes"; // RxAvatar changed to RiUserLine assuming this is the correct React icon for your use case
-import {ConnectButton} from '@rainbow-me/rainbowkit';
 import {TiThMenu} from "react-icons/ti";
 import {useState} from "react";
 import OpenMenuHeader from "./drawer/OpenMenuHeader.tsx";
@@ -37,7 +36,7 @@ function Header() {
                             <FaTwitter className="social-icon"/>
                         </div>
                         <div className="c-pointer">
-                            <ConnectButton label="Connect Wallet" accountStatus="address"/>
+                           <p>connect</p>
                         </div>
                         <div onClick={() => setOpen(true)}
                              className="c-pointer show-1024"

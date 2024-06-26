@@ -3,7 +3,6 @@ import AppLayout from "./layout/AppLayout.tsx";
 
 function App() {
 
-
     return (
         <div>
             <AppLayout/>

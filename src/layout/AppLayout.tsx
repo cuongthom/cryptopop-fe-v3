@@ -4,6 +4,7 @@ import Header from "../components/Header.tsx";
 
 
 const AppLayout = () => {
+
   return (
     <div>
         <Header/>

@@ -1,15 +1,12 @@
-import {http} from 'wagmi'
-import {arbitrum, base, bsc, bscTestnet, mainnet, optimism, polygon} from 'wagmi/chains'
-import {getDefaultConfig} from '@rainbow-me/rainbowkit'
-import '@rainbow-me/rainbowkit/styles.css';
+import {http, createConfig, injected} from '@wagmi/core'
+import { mainnet, bsc } from '@wagmi/core/chains'
 
-
-export const config = getDefaultConfig({
-    appName: 'CryptoPop',
-    projectId: 'YOUR_PROJECT_ID',
-    chains: [bsc, mainnet, bscTestnet, polygon, optimism, arbitrum, base],
+export const config = createConfig({
+    chains: [mainnet,bsc],
+    connectors: [injected()],
+    syncConnectedChain: false,
     transports: {
-        [bsc.id]: http(),
+        [mainnet.id]: http("https://bsc.drpc.org"),
+        [bsc.id]: http("https://bsc.drpc.org"),
     },
-    ssr: true,
 })

@@ -1,12 +1,12 @@
-import {useState} from 'react';
-import type {DrawerProps, RadioChangeEvent} from 'antd';
-import {Button, Drawer, Radio, Space} from 'antd';
+import {Drawer} from 'antd';
 import {IoIosClose} from "react-icons/io";
 import {Link} from "react-router-dom";
 import Routes from "../../routes";
 import routes from "../../routes";
+import PropTypes, {InferProps} from "prop-types";
 
-function OpenMenuHeader({open, setOpen}) {
+
+function OpenMenuHeader({open, setOpen}: InferProps<typeof OpenMenuHeader.propTypes>) {
 
     const onClose = () => {
         setOpen(false);
@@ -46,4 +46,8 @@ function OpenMenuHeader({open, setOpen}) {
     )
 }
 
+OpenMenuHeader.propTypes = {
+    open: PropTypes.bool.isRequired,
+    setOpen: PropTypes.func.isRequired,
+};
 export default OpenMenuHeader;

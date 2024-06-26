@@ -4,9 +4,25 @@ import {Link, useSearchParams} from "react-router-dom";
 import {Row} from "antd";
 
 import GridPops from "./component/GridPops.tsx";
+import {useQuery} from "@tanstack/react-query";
+import popServices from "../../services/popServices.ts";
 
 function AllPopsPage() {
     const [searchParams] = useSearchParams("auction");
+
+    const {data: getDataAuction} = useQuery({
+        queryKey: ["data-auction"],
+        queryFn: async () => {
+            return await popServices.getAllAuction();
+        },
+    });
+    const {data: getDataMarket} = useQuery({
+        queryKey: ["data-market"],
+        queryFn: async () => {
+            return await popServices.getAllMarket();
+        },
+    });
+    console.log("getDataAuction", getDataAuction)
     return (
         <div>
             <div className="container flex-bt-allPop between align-center" style={{margin: '20px 0'}}>
@@ -60,12 +76,14 @@ function AllPopsPage() {
             </div>
             <hr className="vertical-hr"/>
             <Row className="container" gutter={[{xs: 8, sm: 16, md: 24, lg: 32}, {xs: 8, sm: 16, md: 24, lg: 32}]}>
-                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
-                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
-                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
-                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
-                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
-                <GridPops xl={4} lg={6} sm={8} xs={12} span={6}/>
+                {searchParams.get("type") === "market"
+                    ?
+                    <GridPops xl={4} lg={6} sm={8} xs={12} span={4} data={getDataMarket}/>
+                    :
+                    <GridPops xl={4} lg={6} sm={8} xs={12} span={4} data={getDataAuction}/>
+                }
+
+
             </Row>
         </div>
     )
