@@ -5,9 +5,13 @@ import appRoutes from "../routes"; // RxAvatar changed to RiUserLine assuming th
 import {TiThMenu} from "react-icons/ti";
 import {useState} from "react";
 import OpenMenuHeader from "./drawer/OpenMenuHeader.tsx";
+import {ConnectButton} from "@rainbow-me/rainbowkit";
+
 
 function Header() {
     const [open, setOpen] = useState(false);
+
+
     return (
         <div className="bg-black">
             <div className="container">
@@ -35,8 +39,8 @@ function Header() {
                         <div className="icon-wrapper c-pointer" style={{paddingTop: '5px'}}>
                             <FaTwitter className="social-icon"/>
                         </div>
-                        <div className="c-pointer">
-                           <p>connect</p>
+                        <div className="c-pointer" style={{fontSize:'16px'}}>
+                            <ConnectButton />
                         </div>
                         <div onClick={() => setOpen(true)}
                              className="c-pointer show-1024"

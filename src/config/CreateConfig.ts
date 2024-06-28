@@ -1,12 +1,10 @@
-import {http, createConfig, injected} from '@wagmi/core'
-import { mainnet, bsc } from '@wagmi/core/chains'
+import {http, createConfig} from 'wagmi'
+import {bscTestnet} from 'wagmi/chains'
 
 export const config = createConfig({
-    chains: [mainnet,bsc],
-    connectors: [injected()],
-    syncConnectedChain: false,
+    chains: [bscTestnet],
     transports: {
-        [mainnet.id]: http("https://bsc.drpc.org"),
-        [bsc.id]: http("https://bsc.drpc.org"),
+        [bscTestnet.id]: http("https://bsc-testnet.blockpi.network/v1/rpc/public"),
+
     },
 })
