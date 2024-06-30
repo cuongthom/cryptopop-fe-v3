@@ -22,7 +22,7 @@ function AllPopsPage() {
             return await popServices.getAllMarket();
         },
     });
-    console.log("getDataAuction", getDataAuction)
+
     return (
         <div>
             <div className="container flex-bt-allPop between align-center" style={{margin: '20px 0'}}>

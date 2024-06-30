@@ -39,6 +39,12 @@ function OpenMenuHeader({open, setOpen}: InferProps<typeof OpenMenuHeader.propTy
                         <Link to={Routes.home.path} onClick={onClose} className="custom-link">
                             <p style={{fontSize: '18px', margin: '20px 0'}}>FAQ</p>
                         </Link>
+                        <Link to={Routes.attributes.path} onClick={onClose} className="custom-link">
+                            <p style={{fontSize: '18px', margin: '20px 0'}}>My Nfts</p>
+                        </Link>
+                        <Link to={Routes.home.path} onClick={onClose} className="custom-link">
+                            <p style={{fontSize: '18px', margin: '20px 0'}}>My Shop</p>
+                        </Link>
                     </div>
                 </div>
             </Drawer>

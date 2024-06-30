@@ -1,15 +1,19 @@
 import {ARTWORK_CONTRACT_ABI, ARTWORK_CONTRACT_ADDRESS} from "../../contracts";
-import {useReadContracts, useWaitForTransactionReceipt} from 'wagmi'
+import {useConnect, useReadContracts, useWaitForTransactionReceipt} from 'wagmi'
 import {formatEther, parseEther, parseUnits} from "ethers";
 import {useWriteContract} from 'wagmi'
-
+import {useAccount} from 'wagmi'
+import {injected} from "@wagmi/core";
 
 function BuyBoxPage() {
+    const account = useAccount()
+    const {connect} = useConnect()
+    console.log("ac", account)
     const {data: hash, error, isPending, writeContract, writeContractAsync} = useWriteContract()
     const {isLoading, data: dataFunc, isSuccess} = useWaitForTransactionReceipt({
         hash,
     })
-    console.log("isLoading", isLoading, dataFunc)
+
     const artWorkContract = {
         address: ARTWORK_CONTRACT_ADDRESS,
         abi: ARTWORK_CONTRACT_ABI,
@@ -33,25 +37,25 @@ function BuyBoxPage() {
     if (isPendingContract) {
         return <div>Loading...</div>
     }
-    console.log("dataReadContract", dataReadContract)
+
     const formattedData = dataReadContract?.map((item) => ({
         ...item,
         result: item?.result.toString(),
     }));
     const price = formattedData ? formatEther(formattedData[0].result) : ""
-    console.log("price", parseUnits(price, 'ether'))
     const totalSupply = formattedData ? formattedData[1].result : 0
     const totalBoxOpened = formattedData ? formattedData[2].result : 0
-    const priceSubmit = formattedData ? dataReadContract[0]?.result : 0
-    console.log("priceSubmit", priceSubmit)
+
     const buyBox = async (e) => {
         e.preventDefault()
-        console.log("start")
+        if (!account.address) {
+            connect({connector: injected()})
+        }
         writeContract({
             ...artWorkContract,
             functionName: 'buyBlindBox',
             args: [1], // Chuyển giá thành wei
-            value: parseUnits(price, 'ether'), // Chuyển giá thành wei
+            value: parseUnits(price, "ether"), // Chuyển giá thành wei
         })
         await refetch()
     }

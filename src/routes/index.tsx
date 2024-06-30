@@ -2,6 +2,8 @@ import HomePage from "../pages/home/HomePage.tsx";
 import AllPopsPage from "../pages/all-pop/AllPopsPage.tsx";
 import BuyBoxPage from "../pages/box/BuyBoxPage.tsx";
 import AttributesPage from "../pages/attributes/AttributesPage.tsx";
+import MyNfts from "../pages/nft/MyNfts.tsx";
+import MyShop from "../pages/nft/MyShop.tsx";
 
 
 const appRoutes = {
@@ -21,14 +23,14 @@ const appRoutes = {
         path: '/attributes',
         component: <AttributesPage/>
     },
-    // myNfts: {
-    //   path: '/my-nfts',
-    //   component: <MyNftsPage/>
-    // },
-    // myShop: {
-    //   path: '/my-shop',
-    //   component: <MyShopPage/>
-    // },
+    myNfts: {
+        path: '/my-nfts',
+        component: <MyNfts/>
+    },
+    myShop: {
+        path: '/my-shop',
+        component: <MyShop/>
+    },
     //
     // popDetail: {
     //   path: '/pop/:id',
