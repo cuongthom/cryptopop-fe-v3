@@ -1,14 +1,14 @@
 import {ARTWORK_CONTRACT_ABI, ARTWORK_CONTRACT_ADDRESS} from "../../contracts";
 import {useConnect, useReadContracts, useWaitForTransactionReceipt} from 'wagmi'
-import {formatEther, parseEther, parseUnits} from "ethers";
+import {formatEther, parseUnits} from "ethers";
 import {useWriteContract} from 'wagmi'
 import {useAccount} from 'wagmi'
 import {injected} from "@wagmi/core";
+import {Skeleton} from "antd";
 
 function BuyBoxPage() {
     const account = useAccount()
     const {connect} = useConnect()
-    console.log("ac", account)
     const {data: hash, error, isPending, writeContract, writeContractAsync} = useWriteContract()
     const {isLoading, data: dataFunc, isSuccess} = useWaitForTransactionReceipt({
         hash,
@@ -18,6 +18,7 @@ function BuyBoxPage() {
         address: ARTWORK_CONTRACT_ADDRESS,
         abi: ARTWORK_CONTRACT_ABI,
     } as const
+
     const {data: dataReadContract, isPending: isPendingContract, refetch} = useReadContracts({
         contracts: [
             {
@@ -26,26 +27,30 @@ function BuyBoxPage() {
             },
             {
                 ...artWorkContract,
-                functionName: 'totalSupply',
+                functionName: 'getArtworks',
             },
             {
                 ...artWorkContract,
-                functionName: 'totalBoxOpened',
-            },
+                functionName: 'totalSupply',
+            }
+
         ],
     })
+
     if (isPendingContract) {
-        return <div>Loading...</div>
+        return <Skeleton className="container" style={{margin: '20px 0'}} active/>
     }
 
     const formattedData = dataReadContract?.map((item) => ({
         ...item,
         result: item?.result.toString(),
     }));
+    console.log("dataReadContract", formattedData)
     const price = formattedData ? formatEther(formattedData[0].result) : ""
-    const totalSupply = formattedData ? formattedData[1].result : 0
-    const totalBoxOpened = formattedData ? formattedData[2].result : 0
-
+    const totalSupply = formattedData ? formattedData[2].result : ""
+    const artWorkLeng = formattedData ? formattedData[1].result.length : ""
+    console.log("price", price)
+    console.log("totalSupply", totalSupply)
     const buyBox = async (e) => {
         e.preventDefault()
         if (!account.address) {
@@ -54,9 +59,10 @@ function BuyBoxPage() {
         writeContract({
             ...artWorkContract,
             functionName: 'buyBlindBox',
-            args: [1], // Chuyển giá thành wei
+            args: [1],
             value: parseUnits(price, "ether"), // Chuyển giá thành wei
         })
+        console.log("request")
         await refetch()
     }
 
@@ -84,7 +90,7 @@ function BuyBoxPage() {
                     </div>
                     <div style={{padding: '20px 0'}}>
                         <p className="text-gray" style={{fontSize: '20px'}}>Remaining
-                            Amount: {totalBoxOpened} / {totalSupply}</p>
+                            Amount: {totalSupply} / {artWorkLeng} </p>
                         <p className="text-gray" style={{padding: '20px 0', fontSize: '20px'}}>Price</p>
                         <div className="flex">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126.61 126.61"
