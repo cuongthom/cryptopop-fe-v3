@@ -9,5 +9,9 @@ const popServices = {
         const url = "/market/getAllNftMarket";
         return await axiosClient.get(url);
     },
+    getMyNft: async (): Promise<any> => {
+        const url = "/market/getAllNftMarket";
+        return await axiosClient.get(url);
+    },
 }
 export default popServices;

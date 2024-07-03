@@ -2,8 +2,8 @@ import HomePage from "../pages/home/HomePage.tsx";
 import AllPopsPage from "../pages/all-pop/AllPopsPage.tsx";
 import BuyBoxPage from "../pages/box/BuyBoxPage.tsx";
 import AttributesPage from "../pages/attributes/AttributesPage.tsx";
-import MyNfts from "../pages/nft/MyNfts.tsx";
-import MyShop from "../pages/nft/MyShop.tsx";
+import AllMyNfts from "../pages/nft";
+import DetailNfts from "../pages/detail/DetailNfts.tsx";
 
 
 const appRoutes = {
@@ -12,8 +12,9 @@ const appRoutes = {
         component: <HomePage/>
     },
     allPops: {
-        path: '/all-pops',
+        path: '/all-pops/:page',
         component: <AllPopsPage/>,
+        getPath: (page: string) => `/all-pops/${page}`,
     },
     buyBox: {
         path: '/box',
@@ -23,20 +24,16 @@ const appRoutes = {
         path: '/attributes',
         component: <AttributesPage/>
     },
-    myNfts: {
-        path: '/my-nfts',
-        component: <MyNfts/>
+    allMyNfts: {
+        path: '/user/:page',
+        component: <AllMyNfts/>,
+        getPath: (page: string) => `/user/${page}`,
     },
-    myShop: {
-        path: '/my-shop',
-        component: <MyShop/>
+    popDetail: {
+      path: '/pop/:id',
+      component: <DetailNfts/>,
+      getPath: (id: string) => `/pop/${id}`,
     },
-    //
-    // popDetail: {
-    //   path: '/pop/:id',
-    //   component: <PopDetailPage/>,
-    //   getPath: (id: string) => `/pop/${id}`,
-    // },
     // marketDetail: {
     //   path: '/market/:id',
     //   component: <MarketDetailPage/>,

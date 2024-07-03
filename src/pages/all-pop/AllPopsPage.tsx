@@ -1,15 +1,17 @@
 import {IoIosSearch} from "react-icons/io";
 import {FaAngleDown} from "react-icons/fa";
-import {Link, useSearchParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {Row} from "antd";
 
 import GridPops from "./component/GridPops.tsx";
 import {useQuery} from "@tanstack/react-query";
 import popServices from "../../services/popServices.ts";
+import TabButtonNft from "../../components/tab/TabButtonNft.tsx";
+import {useTransaction} from "wagmi";
+
 
 function AllPopsPage() {
-    const [searchParams] = useSearchParams("auction");
-
+    const {page} = useParams()
     const {data: getDataAuction} = useQuery({
         queryKey: ["data-auction"],
         queryFn: async () => {
@@ -22,7 +24,13 @@ function AllPopsPage() {
             return await popServices.getAllMarket();
         },
     });
+    console.log("getDataAuction", getDataAuction)
+    console.log("getDataMarket", getDataMarket)
 
+    const {data: dataTransac, refetch,} = useTransaction({
+        blockHash: "0xf23469fc0bdee84042cff62350ec2e2471725f5a90ff23a364eb15bba976b405",
+    })
+    console.log("dataTransac",dataTransac)
     return (
         <div>
             <div className="container flex-bt-allPop between align-center" style={{margin: '20px 0'}}>
@@ -58,25 +66,10 @@ function AllPopsPage() {
                     </div>
                 </div>
             </div>
-            <div className="flex-bt-allPop container" style={{justifyContent: 'center'}}>
-                <Link to={"/all-pops?type=auction"} className="custom-link">
-                    <div
-                        className={searchParams.get("type") === "auction" || searchParams.get("type") === null ? "button-allPop c-pointer bg-aqua" : "bg-gray button-allPop c-pointer"}
-                        style={{margin: '10px 0', textAlign: 'center'}}>
-                        On Auctions
-                    </div>
-                </Link>
-                <Link to={"/all-pops?type=market"} className="custom-link">
-                    <div
-                        className={searchParams.get("type") === "market" ? "bg-aqua button-allPop c-pointer" : "button-allPop c-pointer bg-gray"}
-                        style={{margin: '10px 0', textAlign: 'center'}}>
-                        On Marketplace
-                    </div>
-                </Link>
-            </div>
+            <TabButtonNft page={page} linkAuc={"/all-pops/auction"} linkMar={"/all-pops/market"}/>
             <hr className="vertical-hr"/>
             <Row className="container" gutter={[{xs: 8, sm: 16, md: 24, lg: 32}, {xs: 8, sm: 16, md: 24, lg: 32}]}>
-                {searchParams.get("type") === "market"
+                {page === "market"
                     ?
                     <GridPops xl={4} lg={6} sm={8} xs={12} span={4} data={getDataMarket}/>
                     :

@@ -29,7 +29,12 @@ body {
 .bg-pop {
     background: #27817e;
 }
-
+.bg-bid {
+    background: #4a9ac5;
+}
+.bg-bid:hover {
+    background: #68a9c3;
+}
 .container {
     padding: 1% 8%; /* Adjust padding as needed */
     margin: 0 auto;
