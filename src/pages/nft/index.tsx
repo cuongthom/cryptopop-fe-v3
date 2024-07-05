@@ -8,7 +8,6 @@ import {IoIosSearch} from "react-icons/io";
 
 function AllMyNfts() {
     const {page} = useParams()
-    console.log(page)
     return (
         <div className="flex container" style={{margin: '20px 0'}}>
             <div style={{width: '100%', maxWidth: '10%'}}>

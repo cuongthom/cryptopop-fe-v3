@@ -3,7 +3,8 @@ import AllPopsPage from "../pages/all-pop/AllPopsPage.tsx";
 import BuyBoxPage from "../pages/box/BuyBoxPage.tsx";
 import AttributesPage from "../pages/attributes/AttributesPage.tsx";
 import AllMyNfts from "../pages/nft";
-import DetailNfts from "../pages/detail/DetailNfts.tsx";
+import MarketDetail from "../pages/detail/MarketDetail.tsx";
+import AuctionDetail from "../pages/detail/AuctionDetail.tsx";
 
 
 const appRoutes = {
@@ -29,21 +30,16 @@ const appRoutes = {
         component: <AllMyNfts/>,
         getPath: (page: string) => `/user/${page}`,
     },
-    popDetail: {
-      path: '/pop/:id',
-      component: <DetailNfts/>,
-      getPath: (id: string) => `/pop/${id}`,
+    marketDetail: {
+        path: '/market/:id',
+        component: <MarketDetail/>,
+        getPath: (id: string) => `/market/${id}`,
     },
-    // marketDetail: {
-    //   path: '/market/:id',
-    //   component: <MarketDetailPage/>,
-    //   getPath: (id: string) => `/market/${id}`,
-    // },
-    // auctionDetail: {
-    //   path: '/auction/:id',
-    //   getPath: (id: string) => `/auction/${id}`,
-    //   component: <AuctionDetailPage/>
-    // }
+    auctionDetail: {
+        path: '/auction/:id',
+        getPath: (id: string) => `/auction/${id}`,
+        component: <AuctionDetail/>
+    }
 
 
 }
