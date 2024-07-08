@@ -20,14 +20,19 @@ function AttributesPage() {
         return {
             singleItem: filteredItems.length > 0 ? filteredItems[index] : null,
             count: filteredItems.length,
+
         };
     };
 
     // Pop Types
-    const {singleItem: singleHuman, count: humanCount} = getSingleItemAndCount("Human", 1201);
+    const {
+        singleItem: singleHuman,
+        count: humanCount,
+    } = getSingleItemAndCount("Human", 1201);
     const {singleItem: singleZombie, count: zombieCount} = getSingleItemAndCount("Zombie", 20);
     const {singleItem: singleRobot, count: robotCount} = getSingleItemAndCount("Robot", 20);
     const {singleItem: singleConstellations, count: constellationsCount} = getSingleItemAndCount("Constellations", 0);
+    console.log("singleConstellations", singleConstellations)
     const {singleItem: singleAnimal, count: animalCount} = getSingleItemAndCount("Animals", 0);
     // Attributes
     const {singleItem: allFemale, count: countFemale} = getAllItemAttributes("female", 3);
@@ -90,41 +95,60 @@ function AttributesPage() {
                 <div className="container">
                     <h3 style={{fontSize: '26px'}}>Pop Types</h3>
                 </div>
-                <Row className="container" gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
+                <Row className="container" gutter={{xs: 8, sm: 16, md: 24, lg: 24}}>
                     {singleHuman && (
                         <GridPopAttributes
-                            xl={4} lg={4} sm={6} xs={8} span={4}
+                            xxl={4} xl={4} lg={4} md={6} sm={6} xs={8} span={4}
                             data={singleHuman}
                             count={humanCount}
-                            name={"Human"}/>
+                            name={"Human"}
+                            link={"types"}
+                        />
                     )}
                     {singleZombie && (
                         <GridPopAttributes
-                            xl={4} lg={4} sm={6} xs={8} span={4}
+                            xxl={4} xl={4} lg={4} md={6} sm={6} xs={8} span={4}
                             data={singleZombie}
                             count={zombieCount}
-                            name={"Zombie"}/>
+                            name={"Zombie"}
+                            link={"types"}
+                        />
                     )}
                     {singleRobot && (
                         <GridPopAttributes
-                            xl={4} lg={4} sm={6} xs={8} span={4}
+                            xxl={4} xl={4} lg={4} md={6} sm={6} xs={8} span={4}
                             data={singleRobot}
                             count={robotCount}
-                            name={"Robot"}/>
+                            name={"Robot"}
+                            link={"types"}
+                        />
                     )}
                     {singleConstellations && (
                         <GridPopAttributes
-                            xl={4} lg={4} sm={6} xs={8} span={4}
+                            xxl={4} xl={4} lg={4} md={6} sm={6} xs={8} span={4}
                             data={singleConstellations}
                             count={constellationsCount}
-                            name={"SingleConstellations"}/>
+                            name={"Constellations"}
+                            link={"types"}
+                        />
                     )}
                     {singleAnimal && (
                         <GridPopAttributes
-                            xl={4} lg={4} sm={6} xs={8} span={4}
+                            xxl={4} xl={4} lg={4} md={6} sm={6} xs={8} span={4}
                             data={singleAnimal}
                             count={animalCount}
-                            name={"Animal"}/>
+                            name={"Animals"}
+                            link={"types"}
+                        />
+                    )}
+                    {dyeHairSing && (
+                        <GridPopAttributes
+                            xxl={4} xl={4} lg={4} md={6} sm={6} xs={8} span={4}
+                            data={dyeHairSing}
+                            count={dyeHairCount}
+                            name={"Dye Hair"}
+                            link={"attributes"}
+                        />
                     )}
                 </Row>
                 <div className="container">
@@ -133,171 +157,219 @@ function AttributesPage() {
                 <Row className="container" gutter={{xs: 8, sm: 16, md: 24, lg: 32}}>
                     {allFemale && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={allFemale}
                             count={countFemale}
-                            name={"Female"}/>
+                            name={"Female"}
+                            link={"attributes"}
+                        />
                     )}
                     {singleSmile && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={singleSmile}
                             count={smileCount}
-                            name={"smile"}/>
+                            name={"smile"}
+                            link={"attributes"}
+                        />
                     )}
                     {singleBeard && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={singleBeard}
                             count={beardCount}
-                            name={"Beard"}/>
+                            name={"Beard"}
+                            link={"attributes"}
+                        />
                     )}
                     {singleGoatee && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={singleGoatee}
                             count={goateeCount}
-                            name={"Goatee"}/>
+                            name={"Goatee"}
+                            link={"attributes"}
+                        />
                     )}
                     {allEarring && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={allEarring}
                             count={countEarring}
-                            name={"Earring"}/>
+                            name={"Earring"}
+                            link={"attributes"}
+                        />
                     )}
                     {singleDyed && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={singleDyed}
                             count={dyedCount}
-                            name={"Dyed"}/>
+                            name={"Dyed"}
+                            link={"attributes"}
+                        />
                     )}
                     {singleEyeliner && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={singleEyeliner}
                             count={eyelinerCount}
-                            name={"Eyeliner"}/>
+                            name={"Eyeliner"}
+                            link={"attributes"}
+                        />
                     )}
                     {singleClassic && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={singleClassic}
                             count={classicCount}
-                            name={"Classic"}/>
+                            name={"Classic"}
+                            link={"attributes"}
+                        />
                     )}
                     {straightSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={straightSing}
                             count={straightCount}
-                            name={"straight"}/>
+                            name={"straight"}
+                            link={"attributes"}
+                        />
                     )}
                     {goglesSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={goglesSing}
                             count={goglesCount}
-                            name={"gogles"}/>
+                            name={"gogles"}
+                            link={"attributes"}
+                        />
                     )}
                     {chokerSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={chokerSing}
                             count={chokerCount}
-                            name={"choker"}/>
+                            name={"choker"}
+                            link={"attributes"}
+                        />
                     )}
                     {bunSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={bunSing}
                             count={bunCount}
-                            name={"choker"}/>
+                            name={"bun"}
+                            link={"attributes"}
+                        />
                     )}
                     {highlightSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={highlightSing}
                             count={highlightCount}
-                            name={"highlight"}/>
+                            name={"highlight"}
+                            link={"attributes"}
+                        />
                     )}
                     {maleSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={maleSing}
                             count={maleCount}
-                            name={"male"}/>
+                            name={"male"}
+                            link={"attributes"}
+                        />
                     )}
                     {headbandSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={headbandSing}
                             count={headbandCount}
-                            name={"headband"}/>
+                            name={"headband"}
+                            link={"attributes"}
+                        />
                     )}
                     {freckleSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={freckleSing}
                             count={freckleCount}
-                            name={"freckle"}/>
+                            name={"freckle"}
+                            link={"attributes"}
+                        />
                     )}
                     {classicStraightSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={classicStraightSing}
                             count={classicStraightCount}
-                            name={"Classic Straight"}/>
+                            name={"Classic Straight"}
+                            link={"attributes"}
+                        />
                     )}
                     {pilotSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={pilotSing}
                             count={pilotCount}
-                            name={"Pilot"}/>
+                            name={"Pilot"}
+                            link={"attributes"}
+                        />
                     )}
                     {headScarfSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={headScarfSing}
                             count={headScarfCount}
-                            name={"Head Scarf"}/>
+                            name={"Head Scarf"}
+                            link={"attributes"}
+                        />
                     )}
                     {faceDecorSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={faceDecorSing}
                             count={faceDecorCount}
-                            name={"Face DecorSing"}/>
+                            name={"Face DecorSing"}
+                            link={"attributes"}
+                        />
                     )}
                     {whiteSkinSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={whiteSkinSing}
                             count={whiteSkinCount}
-                            name={"White Skin"}/>
+                            name={"White Skin"}
+                            link={"attributes"}
+                        />
                     )}
                     {bobSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={bobSing}
                             count={bobCount}
-                            name={"Bob"}/>
+                            name={"Bob"}
+                            link={"attributes"}
+                        />
                     )}
                     {edgyPunkSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={edgyPunkSing}
                             count={edgyPunkCount}
-                            name={"Edgy Punk"}/>
+                            name={"Edgy Punk"}
+                            link={"attributes"}
+                        />
                     )}
                     {dyeHairSing && (
                         <GridPopAttributes
-                            xl={2} lg={4} sm={6} xs={8} span={2}
+                            xxl={3} xl={3} lg={4} md={6} sm={5} xs={8} span={2}
                             data={dyeHairSing}
                             count={dyeHairCount}
-                            name={"Dye Hair"}/>
+                            name={"Dye Hair"}
+                            link={"attributes"}
+                        />
                     )}
                 </Row>
             </div>

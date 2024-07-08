@@ -3,6 +3,7 @@ import logoBnb from "/svg/bnb.svg";
 import {minimizeAddress} from "../../untils";
 
 function DetailNft({data}: any) {
+    console.log("data", data);
     return (
         <div className="container">
             <div style={{padding: '20px 0'}}>
@@ -33,7 +34,7 @@ function DetailNft({data}: any) {
                             fontSize: '32px',
                             padding: '0 20px',
                             marginTop: '10px'
-                        }}>{data?.lastPrice} BNB</b>
+                        }}>{data?.lastPrice || data?.price} BNB</b>
                     </div>
                     {data.endTime &&
                         <div style={{padding: '20px 0'}}>

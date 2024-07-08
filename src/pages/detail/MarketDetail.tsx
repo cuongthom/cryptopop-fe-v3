@@ -6,14 +6,14 @@ import {Skeleton} from "antd";
 
 
 function MarketDetail() {
-    const {id}: any = useParams();
+    const {id} = useParams();
     const [loading, setLoading] = useState(false);
     const [detailNft, setDetailNft] = useState({});
-    console.log("detailNft", detailNft)
+
     const getDetailNft = async () => {
         try {
             setLoading(true)
-            const res = await popServices.getDetailNftMarket(id)
+            const res = await popServices.getDetailNftMarket(id || "")
             setDetailNft(res.data)
         } catch (err) {
             console.log(err)
@@ -21,11 +21,15 @@ function MarketDetail() {
             setLoading(false)
         }
     }
+
     useEffect(() => {
         if (!id) return
         getDetailNft()
     }, [id])
-    return loading ? <Skeleton active className="container" style={{margin: '20px 0'}}/> :
+    return loading
+        ?
+        <Skeleton active className="container" style={{margin: '20px 0'}}/>
+        :
         <DetailNft data={detailNft}/>;
 }
 

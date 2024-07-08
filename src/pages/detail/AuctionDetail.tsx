@@ -59,7 +59,9 @@ function AuctionDetailPage() {
         getDetailNft()
     }, [id])
 
-    return loading ? <Skeleton active className="container" style={{margin: '20px 0'}}/> :
+    return loading
+        ? <Skeleton active className="container" style={{margin: '20px 0'}}/>
+        :
         <DetailNft data={detailNft}/>;
 }
 

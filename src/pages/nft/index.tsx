@@ -30,7 +30,9 @@ function AllMyNfts() {
                 <div>
                     <div className="flex align-center between">
                         <div>
-                            <p>Cryptopops | All My Pop</p>
+                            <b>Cryptopops </b>
+                            <b style={{padding: '0 10px'}}> | </b>
+                            <b> All My Pop</b>
                         </div>
                         <div className="align-center flex" style={{border: '1px solid #ccc'}}>
                             <IoIosSearch style={{fontSize: '30px', margin: '5px'}}/>
@@ -44,7 +46,6 @@ function AllMyNfts() {
                 </div>
                 {page === "my-nfts" ? <MyNfts/> : <MyShop/>}
             </div>
-
         </div>
     )
 }

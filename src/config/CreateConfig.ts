@@ -10,4 +10,5 @@ export const config = getDefaultConfig({
         [bsc.id]: http("https://bsc-pokt.nodies.app"),
         [mainnet.id]: http("https://eth-pokt.nodies.app"),
     },
+    ssr: true,
 });
